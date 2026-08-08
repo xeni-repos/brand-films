@@ -49,12 +49,12 @@
 
   .scene { position:absolute; inset:0; z-index:2; display:grid; place-items:center; opacity:0; transition:opacity .55s ease; pointer-events:none; }
   .scene.active { opacity:1; }
-  .act-tag { position:absolute; top:2.2cqw; left:50%; transform:translateX(-50%); font-size:1.5cqw; letter-spacing:.26em; text-transform:uppercase; color:var(--muted); font-weight:600; white-space:nowrap; }
+  .act-tag { position:absolute; top:2.4cqw; left:50%; transform:translateX(-50%); font-size:1.55cqw; letter-spacing:.18em; text-transform:uppercase; font-weight:700; white-space:nowrap; display:inline-flex; align-items:center; background:rgba(255,255,255,0.72); backdrop-filter:blur(6px); padding:.75cqw 2cqw; border-radius:999px; box-shadow:0 6px 16px -10px rgba(12,60,80,0.5); text-shadow:none !important; }
   .act-tag b { color:var(--primary-deep); font-weight:700; }
   .act-tag .n { display:inline-grid; place-items:center; width:2.6cqw; height:2.6cqw; border-radius:50%; background:var(--primary-deep); color:#fff; font-size:1.5cqw; margin-right:.8cqw; vertical-align:middle; }
   /* scenes with a top tag: reserve space so centered content never collides with it */
-  .scene.has-tag { align-items:start; padding-top:6.2cqw; }
-  .scene.has-tag[data-scene="3"] { padding-top:5.6cqw; }
+  .scene.has-tag { align-items:start; padding-top:6.8cqw; }
+  .scene.has-tag[data-scene="3"] { padding-top:6.0cqw; }
 
   /* Xeni Platform lockup (hero + CTA) */
   .plat-lock { display:inline-flex; align-items:center; gap:1.5cqw; }
