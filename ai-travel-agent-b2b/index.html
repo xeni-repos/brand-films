@@ -438,7 +438,7 @@
 
 <script>
 (function () {
-  var DURATION = 34;
+  var DURATION = 33.5;
   var frame    = document.getElementById('frame');
   var scenes   = Array.prototype.slice.call(document.querySelectorAll('.scene'));
   var promptEl = document.getElementById('prompt');
@@ -483,55 +483,56 @@
   function money(n){ return '$' + n.toLocaleString('en-US'); }
 
   // Scene boundaries (seconds)
-  var S = { s2:4.0, s3:8.5, s4:19.5, s5:25.5, s6:31.0 };
+  // ordered time slots -> scenes: hero, cap1 chat, cap2, cap3, network, cta
+  var S = { s2:2.8, s3:15.0, s4:21.0, s5:27.0, s6:30.5 };
   // Cap 1 (agent brief -> 2 itineraries), offset into scene 3
-  var T = { typeStart:9.0, typeEnd:12.0, aiDots:12.3, aiReply:12.9, optA:13.5, optB:14.1, foot:15.6 };
+  var T = { typeStart:3.4, typeEnd:7.8, aiDots:8.1, aiReply:8.8, optA:9.5, optB:10.2, foot:11.6 };
   // Cap 2 (hotel target)
-  var TP = { start:20.6, end:22.1, hit:22.4, from:195, to:150 };
+  var TP = { start:16.4, end:18.4, hit:18.7, from:195, to:150 };
   // Cap 3 (hotel rebook + split payout: traveler + agent margin)
-  var R = { drop:26.6, trav:27.9, you:28.6, tStart:28.0, tEnd:28.7, yStart:28.7, yEnd:29.4, travAmt:80, youAmt:40 };
+  var R = { drop:22.4, trav:24.2, you:25.0, tStart:24.3, tEnd:24.9, yStart:24.9, yEnd:25.5, travAmt:80, youAmt:40 };
 
   function render(t) {
+    // order: hero(1) -> chat(3) -> target(4) -> rebook(5) -> network(2) -> cta(6)
     var scene = 1;
-    if (t >= S.s2 && t < S.s3) scene = 2;
-    else if (t >= S.s3 && t < S.s4) scene = 3;
-    else if (t >= S.s4 && t < S.s5) scene = 4;
-    else if (t >= S.s5 && t < S.s6) scene = 5;
+    if (t >= S.s2 && t < S.s3) scene = 3;
+    else if (t >= S.s3 && t < S.s4) scene = 4;
+    else if (t >= S.s4 && t < S.s5) scene = 5;
+    else if (t >= S.s5 && t < S.s6) scene = 2;
     else if (t >= S.s6) scene = 6;
     activate(scene);
     progress.style.width = (t / DURATION * 100) + '%';
 
-    // Cap 1: plan-by-intent (agent brief -> 2 itineraries)
+    // Cap 1: plan-by-intent (agent brief -> 2 itineraries) — plays in [s2, s3)
     var chars = Math.round(clamp((t - T.typeStart) / (T.typeEnd - T.typeStart)) * PROMPT.length);
     promptEl.textContent = PROMPT.slice(0, chars);
     caret.style.display = (t >= T.typeStart - 0.3 && t < T.aiReply) ? 'inline-block' : 'none';
     typing.style.display = (t >= T.aiDots && t < T.aiReply) ? 'inline-flex' : 'none';
-    aiText.style.display = (t >= T.aiReply && t < S.s4) ? 'inline' : 'none';
-    aiBubble.style.display = (t >= T.aiDots && t < S.s4) ? 'block' : 'none';
-    optA.classList.toggle('in', t >= T.optA && t < S.s4);
-    optB.classList.toggle('in', t >= T.optB && t < S.s4);
-    chatFoot.classList.toggle('in', t >= T.foot && t < S.s4);
+    aiText.style.display = (t >= T.aiReply && t < S.s3) ? 'inline' : 'none';
+    aiBubble.style.display = (t >= T.aiDots && t < S.s3) ? 'block' : 'none';
+    optA.classList.toggle('in', t >= T.optA && t < S.s3);
+    optB.classList.toggle('in', t >= T.optB && t < S.s3);
+    chatFoot.classList.toggle('in', t >= T.foot && t < S.s3);
 
-    // Cap 2: target rate
-    // chunky counter: step through only a few values ($195→180→165→150)
+    // Cap 2: target rate — plays in [s3, s4)
     var dpT = clamp((t - TP.start)/(TP.end - TP.start));
     var price = TP.from - Math.round(dpT * 3) * ((TP.from - TP.to) / 3);
     tgtNum.textContent = money(price);
-    var hit = t >= TP.hit && t < S.s5;
+    var hit = t >= TP.hit && t < S.s4;
     tgtPrice.classList.toggle('hit', hit);
-    tgtWatch.style.display = (t < TP.hit && t >= S.s4) ? 'inline-flex' : 'none';
+    tgtWatch.style.display = (t < TP.hit && t >= S.s3) ? 'inline-flex' : 'none';
     tgtBooked.style.display = hit ? 'block' : 'none';
 
-    // Cap 3: rebook + split payout (traveler + agent margin)
-    rowDrop.classList.toggle('in', t >= R.drop && t < S.s6);
-    rowTrav.classList.toggle('in', t >= R.trav && t < S.s6);
-    rowYou.classList.toggle('in', t >= R.you && t < S.s6);
-    // chunky counters: +$0→40→80 and +$0→20→40
+    // Cap 3: rebook + split payout — plays in [s4, s5)
+    rowDrop.classList.toggle('in', t >= R.drop && t < S.s5);
+    rowTrav.classList.toggle('in', t >= R.trav && t < S.s5);
+    rowYou.classList.toggle('in', t >= R.you && t < S.s5);
     travNum.textContent = '+' + money(Math.round(clamp((t - R.tStart)/(R.tEnd - R.tStart)) * 2) * (R.travAmt/2));
     youNum.textContent  = '+' + money(Math.round(clamp((t - R.yStart)/(R.yEnd - R.yStart)) * 2) * (R.youAmt/2));
   }
 
   if (reduce) { render(32); progress.style.width = '100%'; replayBtn.addEventListener('click', function(){ run(); }); return; }
+  // (reduced-motion shows the CTA still)
   var startTs = null, rafId = null;
   function tick(ts){ if (startTs===null) startTs=ts; render(((ts - startTs)/1000) % DURATION); rafId = requestAnimationFrame(tick); }
   function run(){ if (rafId) cancelAnimationFrame(rafId); startTs=null; rafId = requestAnimationFrame(tick); }
