@@ -7,25 +7,25 @@
 //   npx playwright install chromium
 //   # ffmpeg must be on your PATH (brew install ffmpeg)
 //
-// Run (16:9, the default — best supported):
+// Run (the ~15s social cut, the default — tighter pacing for narrated/captioned video):
 //   node capture.mjs
 //
-// Override via env vars, e.g. a longer safety window or a different output:
-//   SEC=26 OUT=agent-16x9.mp4 node capture.mjs
+// Capture the ~24s web version instead (better for a landscape web/feed post):
+//   URL='https://xeni-repos.github.io/brand-films/ai-travel-agent-b2b/index.html?fill=1' SEC=26 OUT=agent-24s.mp4 node capture.mjs
 //
-// The film is captured full-bleed via the ?fill=1 flag. It loops ~24s, so we
-// record ~26s and trim in your editor, or set SEC to the exact loop length.
+// The film is captured full-bleed via the ?fill=1 flag. Record one loop + a small
+// margin (SEC), then trim to the exact loop length in your editor.
 
 import { chromium } from 'playwright';
 import { execSync } from 'node:child_process';
 import { readdirSync, mkdirSync, rmSync } from 'node:fs';
 
 const URL = process.env.URL
-  || 'https://xeni-repos.github.io/brand-films/ai-travel-agent-b2b/index.html?fill=1';
+  || 'https://xeni-repos.github.io/brand-films/ai-travel-agent-b2b/social-15s.html?fill=1';
 const W   = Number(process.env.W   || 1920);   // 16:9 = 1920x1080
 const H   = Number(process.env.H   || 1080);
-const SEC = Number(process.env.SEC || 26);     // record window (one ~24s loop + margin)
-const OUT = process.env.OUT || 'ai-travel-agent-16x9.mp4';
+const SEC = Number(process.env.SEC || 16);     // record window (one ~14.6s loop + margin)
+const OUT = process.env.OUT || 'ai-travel-agent-15s.mp4';
 
 const tmp = './.capture';
 rmSync(tmp, { recursive: true, force: true });

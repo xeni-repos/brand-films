@@ -1,8 +1,17 @@
 # AI Travel Agent — B2B brand film
 
-A ~24-second, self-contained HTML brand film for the white-label AI Travel Agent, aimed at travel professionals: independent agents, group consultants, host agencies, and leisure travel planners.
+A self-contained HTML brand film for the white-label AI Travel Agent, aimed at travel professionals: independent agents, group consultants, host agencies, and leisure travel planners.
 
 The reseller's brand sits front and center; the Xeni Travel Commerce Platform (xTCP) runs underneath.
+
+**Two cuts, same story:**
+
+| File | Length | Best for |
+|------|--------|----------|
+| [`index.html`](index.html) | ~24s | The web embed / landscape feed post — relaxed pacing, reads on its own (silent) |
+| [`social-15s.html`](social-15s.html) | ~15s | Narrated/captioned social video (Reels/Shorts/LinkedIn) — tight pacing; music + voiceover + captions carry the reading |
+
+Watch: [24s](https://xeni-repos.github.io/brand-films/ai-travel-agent-b2b/) · [15s](https://xeni-repos.github.io/brand-films/ai-travel-agent-b2b/social-15s.html)
 
 ## The story (autoplays and loops)
 
@@ -47,8 +56,10 @@ To turn the silent web loop into a narrated LinkedIn / Reels / Shorts video:
    npm i playwright && npx playwright install chromium
    node capture.mjs
    ```
-   Produces `ai-travel-agent-16x9.mp4` (silent, 1080p) using the film's `?fill=1`
-   full-bleed capture mode. Override `W`/`H`/`SEC`/`OUT`/`URL` via env vars.
+   Defaults to the **~15s** cut (`social-15s.html`) → `ai-travel-agent-15s.mp4`
+   (silent, 1080p) via the film's `?fill=1` full-bleed mode. To capture the ~24s
+   web version instead, override the URL (see the header comment in `capture.mjs`).
+   Override `W`/`H`/`SEC`/`OUT`/`URL` via env vars.
 2. **Add audio + reframe** — follow [`social-production-kit.md`](social-production-kit.md):
    voiceover script (timed to the beats), music brief + royalty-free sources,
    platform specs, and how to reframe 16:9 → 9:16 / 1:1 in CapCut.

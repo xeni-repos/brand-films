@@ -2,11 +2,26 @@
 
 For turning the film into LinkedIn / Instagram Reels / YouTube Shorts videos with **music + voiceover**.
 
-> The film now runs **~24s**, which works for both the silent web loop and the narrated social cut — the voiceover timings below line up with it directly.
+> There are **two cuts**: the **~15s** cut (`social-15s.html`) is the default for social — tight pacing, captions + voiceover carry the reading. The **~24s** cut (`index.html`) is the relaxed web/landscape version. Pick the VO script below that matches the cut you captured.
 
 ---
 
-## 1. Voiceover script (≈22s, timed to the beats)
+## 1a. Voiceover script — **15s cut** (default for social)
+
+Tight and punchy; on-screen captions carry the detail. ~40 words. Let the music breathe where there's no line.
+
+| Time | Scene | Voiceover |
+|------|-------|-----------|
+| 0:00–0:01.5 | Hero | "Your agency's own AI booking agent." |
+| 0:01.5–0:06.6 | Agent chat | "Describe the trip — complete, priced itineraries in seconds, ready for your client to approve." |
+| 0:06.6–0:09.2 | Autonomous booking | "Set a target rate — it books automatically." |
+| 0:09.2–0:11.6 | Auto-rebook | "Then rebooks lower, and splits the savings with you." |
+| 0:11.6–0:12.9 | Network | "You set the goals." |
+| 0:12.9–0:14.6 | CTA | "Xeni handles the rest." |
+
+**Tone notes:** brisk but warm, not rushed. The on-screen text already carries "no cards / money never leaves the account" and "Sign up for early access" — don't crowd the VO with them.
+
+## 1b. Voiceover script — **24s cut** (relaxed web/landscape)
 
 Warm, confident, unhurried. ~48–52 words total (comfortable at a natural pace).
 
@@ -20,10 +35,10 @@ Warm, confident, unhurried. ~48–52 words total (comfortable at a natural pace)
 
 **Tone notes:** conversational, not announcer-y. Land "no cards shared" and "splitting the savings" — those are the differentiators. Slight lift on the final line.
 
-**Where to make the VO:**
+**Where to make the VO (either cut):**
 - **ElevenLabs** (elevenlabs.io) — best natural AI voices; pick a warm professional voice, export MP3/WAV.
 - **Descript** (descript.com) — has Overdub voices and syncs to video in one place.
-- Or record a human — 22s is quick.
+- Or record a human — it's quick either way.
 
 ---
 
