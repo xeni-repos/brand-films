@@ -49,7 +49,7 @@
   /* frosted band behind the sentence sub-lines so they don't fade into the photo */
   .b2b-hero .sub, .cta p { display:inline-block; background:rgba(255,255,255,0.64); backdrop-filter:blur(5px); padding:1cqw 2.2cqw; border-radius:1.4cqw; box-shadow:0 5px 14px -9px rgba(12,60,80,0.45); text-shadow:none; }
 
-  .scene { position:absolute; inset:0; z-index:2; display:grid; place-items:center; opacity:0; transition:opacity .55s ease; pointer-events:none; }
+  .scene { position:absolute; inset:0; z-index:2; display:grid; place-items:center; opacity:0; transition:opacity .35s ease; pointer-events:none; }
   .scene.active { opacity:1; }
   .act-tag { position:absolute; top:2.4cqw; left:50%; transform:translateX(-50%); font-size:1.55cqw; letter-spacing:.18em; text-transform:uppercase; font-weight:700; white-space:nowrap; display:inline-block; background:rgba(255,255,255,0.72); backdrop-filter:blur(6px); padding:.75cqw 2cqw; border-radius:999px; box-shadow:0 6px 16px -10px rgba(12,60,80,0.5); text-shadow:none !important; }
   .act-tag b { color:var(--primary-deep); font-weight:700; }
@@ -433,12 +433,12 @@
     <div class="progress" id="progress"></div>
   </div>
 
-  <p class="caption">~34-second B2B film · <b>Xeni Travel Commerce Platform (xTCP)</b> for travel professionals · brand the agent, name the goals, the platform handles the rest · autoplays &amp; loops · embed with an <b>&lt;iframe&gt;</b></p>
+  <p class="caption">~30-second B2B film · <b>Xeni Travel Commerce Platform (xTCP)</b> for travel professionals · brand the agent, name the goals, the platform handles the rest · autoplays &amp; loops · embed with an <b>&lt;iframe&gt;</b></p>
 </div>
 
 <script>
 (function () {
-  var DURATION = 33.5;
+  var DURATION = 29.4;
   var frame    = document.getElementById('frame');
   var scenes   = Array.prototype.slice.call(document.querySelectorAll('.scene'));
   var promptEl = document.getElementById('prompt');
@@ -484,13 +484,13 @@
 
   // Scene boundaries (seconds)
   // ordered time slots -> scenes: hero, cap1 chat, cap2, cap3, network, cta
-  var S = { s2:2.8, s3:15.0, s4:21.0, s5:27.0, s6:30.5 };
+  var S = { s2:2.6, s3:13.6, s4:18.4, s5:23.2, s6:26.4 };
   // Cap 1 (agent brief -> 2 itineraries), offset into scene 3
-  var T = { typeStart:3.4, typeEnd:7.8, aiDots:8.1, aiReply:8.8, optA:9.5, optB:10.2, foot:11.6 };
+  var T = { typeStart:3.2, typeEnd:7.2, aiDots:7.5, aiReply:8.2, optA:8.9, optB:9.6, foot:11.0 };
   // Cap 2 (hotel target)
-  var TP = { start:16.4, end:18.4, hit:18.7, from:195, to:150 };
+  var TP = { start:14.8, end:16.4, hit:16.7, from:195, to:150 };
   // Cap 3 (hotel rebook + split payout: traveler + agent margin)
-  var R = { drop:22.4, trav:24.2, you:25.0, tStart:24.3, tEnd:24.9, yStart:24.9, yEnd:25.5, travAmt:80, youAmt:40 };
+  var R = { drop:19.6, trav:21.0, you:21.7, tStart:21.1, tEnd:21.6, yStart:21.6, yEnd:22.1, travAmt:80, youAmt:40 };
 
   function render(t) {
     // order: hero(1) -> chat(3) -> target(4) -> rebook(5) -> network(2) -> cta(6)
@@ -531,7 +531,7 @@
     youNum.textContent  = '+' + money(Math.round(clamp((t - R.yStart)/(R.yEnd - R.yStart)) * 2) * (R.youAmt/2));
   }
 
-  if (reduce) { render(32); progress.style.width = '100%'; replayBtn.addEventListener('click', function(){ run(); }); return; }
+  if (reduce) { render(28); progress.style.width = '100%'; replayBtn.addEventListener('click', function(){ run(); }); return; }
   // (reduced-motion shows the CTA still)
   var startTs = null, rafId = null;
   function tick(ts){ if (startTs===null) startTs=ts; render(((ts - startTs)/1000) % DURATION); rafId = requestAnimationFrame(tick); }
