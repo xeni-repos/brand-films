@@ -1,6 +1,6 @@
 # AI Travel Agent — B2B brand film
 
-A ~34-second, self-contained HTML brand film for the white-label AI Travel Agent, aimed at travel professionals: independent agents, group consultants, host agencies, and leisure travel planners.
+A ~24-second, self-contained HTML brand film for the white-label AI Travel Agent, aimed at travel professionals: independent agents, group consultants, host agencies, and leisure travel planners.
 
 The reseller's brand sits front and center; the Xeni Travel Commerce Platform (xTCP) runs underneath.
 
@@ -36,6 +36,22 @@ Example — a Hashgraph Travel cut:
 ```
 index.html?brand=Hashgraph%20Travel&url=ai.hashgraphtravel.com
 ```
+
+## Produce social videos (music + voiceover)
+
+To turn the silent web loop into a narrated LinkedIn / Reels / Shorts video:
+
+1. **Capture a clean MP4** — record the film straight from the live URL:
+   ```bash
+   # one-time: ffmpeg on PATH (brew install ffmpeg), then:
+   npm i playwright && npx playwright install chromium
+   node capture.mjs
+   ```
+   Produces `ai-travel-agent-16x9.mp4` (silent, 1080p) using the film's `?fill=1`
+   full-bleed capture mode. Override `W`/`H`/`SEC`/`OUT`/`URL` via env vars.
+2. **Add audio + reframe** — follow [`social-production-kit.md`](social-production-kit.md):
+   voiceover script (timed to the beats), music brief + royalty-free sources,
+   platform specs, and how to reframe 16:9 → 9:16 / 1:1 in CapCut.
 
 ## Notes
 
