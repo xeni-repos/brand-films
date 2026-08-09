@@ -20,6 +20,10 @@
     --body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
   * { box-sizing: border-box; }
+  /* full-bleed capture mode (?fill=1): frame fills viewport, no page chrome */
+  .cap-fill .page { padding:0 !important; gap:0 !important; min-height:100vh; }
+  .cap-fill .frame { width:100vw !important; height:100vh !important; max-width:none !important; aspect-ratio:auto !important; border-radius:0 !important; box-shadow:none !important; }
+  .cap-fill .caption { display:none !important; }
   .page { min-height:100%; margin:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:20px;
     background: radial-gradient(1200px 700px at 50% -10%, #F2FAFF 0%, transparent 60%), linear-gradient(180deg,#EAF6FD 0%,#D9EEFA 100%);
     background-color:#E9F5FC; font-family:var(--body); color:var(--ink); }
@@ -473,6 +477,7 @@
     if (agentName && elAgent) elAgent.textContent = agentName;
     if (pUrl && elUrl) elUrl.textContent = pUrl;
     if (pBrand) document.querySelectorAll('.plat-lock .w').forEach(function(w){ w.textContent = pBrand; });
+    if (qp.get('fill')) document.documentElement.classList.add('cap-fill'); // full-bleed for MP4 capture
   } catch (e) { /* fall back to placeholder branding */ }
 
   var PROMPT = "Hi! My client John just got married and wants an Amalfi Coast honeymoon — one week in September, flexible dates, from SFO, budget $7,000. Put together 2 end-to-end itineraries for me to review; I'll have John approve the Purchase Allowance.";
