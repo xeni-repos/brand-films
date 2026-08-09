@@ -433,12 +433,12 @@
     <div class="progress" id="progress"></div>
   </div>
 
-  <p class="caption">~30-second B2B film · <b>Xeni Travel Commerce Platform (xTCP)</b> for travel professionals · brand the agent, name the goals, the platform handles the rest · autoplays &amp; loops · embed with an <b>&lt;iframe&gt;</b></p>
+  <p class="caption">~22-second B2B film · <b>Xeni Travel Commerce Platform (xTCP)</b> for travel professionals · brand the agent, name the goals, the platform handles the rest · autoplays &amp; loops · embed with an <b>&lt;iframe&gt;</b></p>
 </div>
 
 <script>
 (function () {
-  var DURATION = 29.4;
+  var DURATION = 22.0;
   var frame    = document.getElementById('frame');
   var scenes   = Array.prototype.slice.call(document.querySelectorAll('.scene'));
   var promptEl = document.getElementById('prompt');
@@ -484,13 +484,13 @@
 
   // Scene boundaries (seconds)
   // ordered time slots -> scenes: hero, cap1 chat, cap2, cap3, network, cta
-  var S = { s2:2.6, s3:13.6, s4:18.4, s5:23.2, s6:26.4 };
+  var S = { s2:2.0, s3:10.2, s4:13.8, s5:17.6, s6:19.8 };
   // Cap 1 (agent brief -> 2 itineraries), offset into scene 3
-  var T = { typeStart:3.2, typeEnd:7.2, aiDots:7.5, aiReply:8.2, optA:8.9, optB:9.6, foot:11.0 };
+  var T = { typeStart:2.5, typeEnd:5.3, aiDots:5.5, aiReply:6.0, optA:6.6, optB:7.2, foot:8.4 };
   // Cap 2 (hotel target)
-  var TP = { start:14.8, end:16.4, hit:16.7, from:195, to:150 };
+  var TP = { start:10.8, end:11.3, hit:11.5, from:195, to:150 };
   // Cap 3 (hotel rebook + split payout: traveler + agent margin)
-  var R = { drop:19.6, trav:21.0, you:21.7, tStart:21.1, tEnd:21.6, yStart:21.6, yEnd:22.1, travAmt:80, youAmt:40 };
+  var R = { drop:14.4, trav:15.4, you:16.0, tStart:15.5, tEnd:15.9, yStart:15.9, yEnd:16.3, travAmt:80, youAmt:40 };
 
   function render(t) {
     // order: hero(1) -> chat(3) -> target(4) -> rebook(5) -> network(2) -> cta(6)
@@ -531,7 +531,7 @@
     youNum.textContent  = '+' + money(Math.round(clamp((t - R.yStart)/(R.yEnd - R.yStart)) * 2) * (R.youAmt/2));
   }
 
-  if (reduce) { render(28); progress.style.width = '100%'; replayBtn.addEventListener('click', function(){ run(); }); return; }
+  if (reduce) { render(20.5); progress.style.width = '100%'; replayBtn.addEventListener('click', function(){ run(); }); return; }
   // (reduced-motion shows the CTA still)
   var startTs = null, rafId = null;
   function tick(ts){ if (startTs===null) startTs=ts; render(((ts - startTs)/1000) % DURATION); rafId = requestAnimationFrame(tick); }
