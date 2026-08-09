@@ -60,6 +60,9 @@ To turn the silent web loop into a narrated LinkedIn / Reels / Shorts video:
    (silent, 1080p) via the film's `?fill=1` full-bleed mode. To capture the ~24s
    web version instead, override the URL (see the header comment in `capture.mjs`).
    Override `W`/`H`/`SEC`/`OUT`/`URL` via env vars.
+   *(A pre-rendered [`ai-travel-agent-15s.mp4`](ai-travel-agent-15s.mp4) — clean
+   1080p, one full loop — is committed here, so you can skip this step and go
+   straight to adding audio.)*
 2. **Add audio + reframe** — follow [`social-production-kit.md`](social-production-kit.md):
    voiceover script (timed to the beats), music brief + royalty-free sources,
    platform specs, and how to reframe 16:9 → 9:16 / 1:1 in CapCut.
